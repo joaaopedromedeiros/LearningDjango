@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'), #path(url, arquivoviews.funçãoimportada, name="nome")
-    path('room/<str:pk>',views.room, name="room")
+    path('room/<str:pk>',views.room, name="room"), # <str:parametro>, <int:parametro>, recebe o argumento do banco de dados
+    path('create-room',views.create_room, name="create-room")
 ]
 
 # Eu defino a url aqui, pois no urls.py "mãe" eu apenas coloco path('', include("appname.urls")) 

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
 ]
 
+# acima cadastrei o app criado, nomepasta.arquivo.classe (todos apps seguem essa estrutura padrão)
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
