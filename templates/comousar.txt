@@ -1,0 +1,1 @@
+Para o djago saber que essa pasta existe é necessário ir no settings, templates e ir em dirs e base dir / "nomedapasta"
