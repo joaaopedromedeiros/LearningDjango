@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 
 class Topic(models.Model):
     name = models.CharField(max_length=200)
-
     def __str__(self):
         return self.name
 
@@ -21,6 +20,11 @@ class Room(models.Model):
     #participants =
     updated = models.DateField(auto_now=True) # every time you modify
     created = models.DateField(auto_now_add=True) # quando a gente criou/instanciou a primeira vez
+
+    class Meta:
+        ordering = ['updated', 'created']
+
+
 
     def __str__(self):
         return self.name

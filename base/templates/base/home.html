@@ -7,16 +7,25 @@
 
     <div>
         <div>
-
+            
             {% for room in rooms %}
 
-            <div>
+            <div >
                 <br>
-                <span>{{room.host.username}}</span>
-                <div>
-                   <p> {{room.id}} -- <a href="{% url 'room' room.id  %}"> {{room.name}} </a></p>
+                
+                
+                
+                <div style="border: 1px solid;">
+                    <span> Criador: {{room.host.username}}</span>
+                    <p> Id da sala:  {{room.id}} , Nome da sala: <a href="{% url 'room' room.id  %}"> {{room.name}} </a></p>
+                    <div>{{room.topic}}</div>
+
+                    <p> Opções de CRUD</p>
+                    <a href="{% url 'update-room' room.id %}">Edit room</a> <!-- Quando clica aqui o id do model vai pra url, e a url é "quem executa a função no django e o id vira argumento da views"-->
+                    <a href="{% url 'delete-room' pk=room.id %}">Delete</a>
+                    <br>
                 </div>
-                <div>{{room.topic}}</div>
+              
             </div>
             
 
