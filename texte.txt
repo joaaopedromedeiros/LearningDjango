@@ -1,0 +1,19 @@
+
+Na views:
+
+def minha_view(request):
+    if request.method == 'POST':
+        dado = request.POST.get('chave')
+        return HttpResponse(f'O dado recebido foi: {dado}')
+
+Url:
+urlpatterns = [
+    path('minha-url/', views.minha_view, name='minha-view'),  # Defina a URL da sua view
+]
+
+<form method="POST" action="{% url 'minha-view' %}">
+    {% csrf_token %}
+    <label for="chave">Informe o dado:</label>
+    <input type="text" name="chave" id="chave">
+    <button type="submit">Enviar</button>
+</form>

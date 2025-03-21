@@ -4,10 +4,49 @@
 {% block content %}
     <h1>Home template</h1>
 
+<!-- Para o django executar uma views vc precisa chamar/acionar ela através da URL. Toda vez que a url vinculada a uma views 
+ é executada, os valores da url viram ARGUMENTOS para a views específica. 
+ Por padrão request se refere a /url, e podemos adicionar outros parametros como <str:argumento>, etc.
 
-    <div>
+
+Ao ir para essa url do href ele pega o valor da url: update-room, e depois ainda passa outro argumento:  o room.id, 
+os quais serão passadas para urls.py na formatação ppre-estabelecida para views de update-room. 
+Logo depois disso os argumentos são passados para views que executa toda função e rendiza/faz algo
+
+-->
+
+<style>
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    li {
+        list-style: none;
+    }
+</style>
+
+
+<div class="home-container">
+    <div class="topics">
+        <h3> Topcis</h3> 
+        <hr>
+        
+        
+        <ul>
+            <li><a href="{% url 'home' %}"> Home </a></li>
+
+            {% for topic in topics %}
+            <a href="{% url 'home' %}?q={{topic.name}}"><li>{{ topic.name }}</li></a> <!-- Esse ? significa que o que vem depois é parametros -->
+            {% endfor %}
+        </ul>
+       
+    </div>
+ 
+
+    <div class="rooms">
         <div>
-            
+            <p> Salas disponíveis: {{rooms_count}} </p>
             {% for room in rooms %}
 
             <div >
@@ -21,7 +60,7 @@
                     <div>{{room.topic}}</div>
 
                     <p> Opções de CRUD</p>
-                    <a href="{% url 'update-room' room.id %}">Edit room</a> <!-- Quando clica aqui o id do model vai pra url, e a url é "quem executa a função no django e o id vira argumento da views"-->
+                    <a href="{% url 'update-room' pk=room.id %}">Edit room</a> <!-- Quando clica aqui o id do model vai pra url, e a url é "quem executa a função no django e o id vira argumento da views"-->
                     <a href="{% url 'delete-room' pk=room.id %}">Delete</a>
                     <br>
                 </div>
@@ -35,4 +74,6 @@
 
         </div>
     </div>
+</div>
+
 {% endblock %}
