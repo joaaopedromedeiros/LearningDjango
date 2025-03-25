@@ -9,7 +9,9 @@ urlpatterns = [
     path('update-room/<str:pk>/',views.update_room, name="update-room"),
     path('delete-room/<str:pk>/', views.delete_room, name="delete-room"),
     path('login/', views.LoginPage, name="login"),
-    path('logout/', views.LogoutUser, name="logout")
+    path('logout/', views.LogoutUser, name="logout"),
+    path('registro/', views.registerPage, name="registro"),
+    path('delete-message/<str:pk>/', views.deleteMessage, name="delete-mensagem"),
 
     # cria a formatação do parametro de como chega o argumento para o request da url nesse caso --> ('delete-room'); A URL É ARGUMENTO DE REQUEST QUE TA EM VIEWS
     # cria a formtação do parametro  de como o argumento de pk vai ser recebido (/<str:pk>/); --> PK É ARGUMENTO DO PARAMETTRO PK QUE TA EM VIEWS

@@ -17,7 +17,7 @@
 
 {% if request.user.is_authenticated %}
 <a href="{% url 'logout' %}">Logout</a>
-<p> Bem vindo, {{user.name}}</p>
+<p> Bem vindo, {{user.username}}</p> <!-- Variável de user é disponível em todas as páginas deviido o django fazer o login-->
 {% else %}
 <a href="{% url 'login' %}">Login</a>
 {% endif %}

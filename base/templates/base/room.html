@@ -2,7 +2,63 @@
 
 {% block content %}
 
-<h1>{{room.name}}</h1>
+<style>
+    .room-container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+</style>
+<div class="room-container">
+
+    <div>
+        <h1>{{room.name}}</h1>
+        <p><b>Descrição da sala:</b> {{room.description}}</p>
+        
+        <div class="comment-wrapper">
+            <h3>Conversation</h3>
+            <hr>
+        
+        
+            {% for massage in room_massages %}
+                <div>
+                   
+                    {% if request.user == massage.user %}
+                    <a href="{% url 'delete-mensagem' massage.id %}">Delete message</a>
+                    {% endif %}
+                    <small>@{{massage.user}} {{massage.created|timesince}} ago</small> <!-- Filtro: "|timesince"-->
+                    <p>{{massage.body}}</p>
+                    <hr>
+                </div>
+            {% endfor %}
+        
+        
+        
+        </div>
+        
+        {% if request.user.is_authenticated %}
+        <div class="comment-from">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="body" placeholder="Escreva sua mensagem aqui">
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+    <div>
+        <h3>Participantes</h3>
+        <hr>
+
+        {% for participante in participants %}
+            <p>
+                {{participante.username}}
+            </p>
+        {% endfor%}
+    </div>
+
+    
+</div>
+
 
 
 {% endblock %}

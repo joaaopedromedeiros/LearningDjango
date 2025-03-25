@@ -17,7 +17,7 @@ class Room(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True) # se apagarem a classe pai, a msg também some, relação de 1 pra 1
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True) # ele não pode ser vazio, orbigatoriamente vai ser TTrue então precisa ter algo
-    #participants =
+    participants = models.ManyToManyField(User, related_name='participants', blank=True)
     updated = models.DateField(auto_now=True) # every time you modify
     created = models.DateField(auto_now_add=True) # quando a gente criou/instanciou a primeira vez
 
